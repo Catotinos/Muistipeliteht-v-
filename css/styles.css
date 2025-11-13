@@ -28,3 +28,9 @@ body {
 .card.flipped {
     background-color: #fff;
 }
+
+#btn {
+    margin-top:40px;
+    display:none;
+}
+

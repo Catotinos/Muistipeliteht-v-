@@ -4,12 +4,20 @@ const allCards = [
     '🍎', '🍐', '🍒', '🍉', '🍇', '🍓', '🍌', '🍍', '🥝', '🥥', '🍑', '🍈', '🍋', '🍊', '🍏', '🍅'
 ];
 const gameBoard = document.getElementById('game-board');
+const  resetbutton = document.getElementById("reset");
+resetbutton.addEventListener('click', reset());
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 
 function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
+    let i = array.length;
+    while (i != 0) {
+        let randomi = Math.floor(Math.random() * i);
+        i--;
+        [array[i], array[randomi]] = [
+        array[randomi], array[i]];
+  }    
 }
 
 export function createBoard(cardCount) {
@@ -63,4 +71,9 @@ function unflipCards() {
 
 function resetBoard() {
     [firstCard, secondCard, lockBoard] = [null, null, false];
+}
+
+
+function reset() {
+    console.log("toimii")
 }
