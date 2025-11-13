@@ -18,7 +18,7 @@ export function createBoard(cardCount) {
     shuffle(cards);
     cards.forEach(card => {
         const cardElement = createCardElement(card);
-        cardElement.addEventListener('click', () => flipCard(cardElement, handleCardFlip));
+        cardElement.addEventListener('click', () => flipCard(cardElement, handleCardFlip, lockBoard));
         gameBoard.appendChild(cardElement);
     });
 }
