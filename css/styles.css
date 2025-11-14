@@ -10,13 +10,13 @@ body {
 
 #game-board {
     display: grid;
-    grid-template-columns: repeat(4, 100px);
+    grid-template-columns: repeat(4, auto);
     grid-gap: 10px;
 }
 
 .card {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     background-color: #ccc;
     display: flex;
     align-items: center;
@@ -34,3 +34,14 @@ body {
     display:none;
 }
 
+@media (max-width: 1200px){
+    .card {
+        width:100%;
+        height:100px;
+    }
+    #game-board {
+        max-width:100%;
+        grid-template-columns: repeat(4, 100px);
+        
+    }
+}
