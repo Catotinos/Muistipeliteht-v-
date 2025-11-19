@@ -12,6 +12,11 @@ let secondCard = null;
 let lockBoard = false;
 const cardsfound = [];
 const cardsonboard = [];
+var yritykset = 0;
+var pariloydetty;
+const valikoima = document.getElementById("valikko")
+
+
 
 function shuffle(array) {
     let i = array.length;
@@ -23,6 +28,8 @@ function shuffle(array) {
 }
 
 export function createBoard(cardCount) {
+    valikoima.style.display = "none"
+    pariloydetty = new sound("pariloydetty.mp3")
     const selectedCards = allCards.slice(0, cardCount / 2);
     const cards = [...selectedCards, ...selectedCards];
     resetdiv.style.display = "none"
@@ -57,6 +64,7 @@ function checkForMatch() {
 }
 
 function disableCards() {
+    pariloydetty.play();
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
     cardsfound.push(firstCard);
@@ -72,6 +80,7 @@ function disableCards() {
 
 function unflipCards() {
     lockBoard = true;
+    yritykset += 1
     setTimeout(() => {
         firstCard.classList.remove('flipped');
         secondCard.classList.remove('flipped');
@@ -91,17 +100,31 @@ function cardcounter(card) {
 }
 
 function reset() {
-    const cardCount = parseInt(prompt("Syötä korttien määrä (parillinen luku):"), 10);
-    if (cardCount % 2 !== 0) {
-        alert("Korttien määrän täytyy olla parillinen luku.");
-        return;
-    }
-    createBoard(cardCount);
+    yritykset = 0
+    document.getElementById("yritykset").innerHTML = ""
+    valikoima.style.display = "block"
+    resetdiv.style.display = "none"
 }
 
 function ending() {
     while (gameBoard.firstChild) {
         gameBoard.removeChild(gameBoard.lastChild);
     }
+    document.getElementById("yritykset").innerHTML = "Väärät yritykset" + " " + yritykset
     resetdiv.style.display = "block"
+}
+
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
 }

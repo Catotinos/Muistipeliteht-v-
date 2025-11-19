@@ -16,8 +16,8 @@ body {
 }
 
 .card {
-    width: 200px;
-    height: 200px;
+    width: 10vh;
+    height: 10vh;
     background-color: #ccc;
     display: flex;
     align-items: center;
@@ -33,6 +33,10 @@ body {
 #btn {
     margin-top:40px;
     display:none;
+}
+
+button {
+    font-size:3vh;
 }
 
 @media (max-width: 1200px){
